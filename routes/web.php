@@ -38,11 +38,11 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
  */
 $router->group(['middleware' => 'client.credentials'], function () use ($router) {
     /**
-     * sellers
+     * Sellers
      */
     $router->get('/sellers', [
         'as' => 'sellers.index',
-        'uses' => 'sellers\GetSellersListController'
+        'uses' => 'Sellers\GetSellersListController'
     ]);
 
     /**

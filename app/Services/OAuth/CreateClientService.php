@@ -27,7 +27,7 @@ class CreateClientService
         $plainSecret = Str::random(40);
 
         $client = Client::create([
-            'seller_id' => $sellerId,
+            'user_id' => $sellerId,
             'name' => $appName,
             'description' => $appDescription,
             'secret' => $plainSecret,

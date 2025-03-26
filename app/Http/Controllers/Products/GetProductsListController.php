@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Products\ProductService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ProductController extends Controller
+class GetProductsListController extends Controller
 {
     use ApiResponser;
 
@@ -20,6 +20,6 @@ class ProductController extends Controller
 
     public function __invoke(): JsonResponse
     {
-        return $this->successResponse($this->productService->getProducts());
+        return $this->jsonResponse($this->productService->getProducts());
     }
 }

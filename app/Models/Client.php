@@ -12,7 +12,7 @@ class Client extends PassportClient
     use SoftDeletes;
 
     protected $fillable = [
-        'seller_id',
+        'user_id',
         'name',
         'description',
         'secret',
