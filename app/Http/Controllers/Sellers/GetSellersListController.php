@@ -8,9 +8,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetSellersListController extends Controller
 {
-    public function index(): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        return $this->successResponse(Seller::select([
+        return $this->successResponse(Seller::query()->select([
             'id', 'name', 'email'
         ])->get());
     }

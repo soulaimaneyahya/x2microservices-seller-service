@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "d046f121-d5c9-4f72-bd2b-e9d928e5336f",
+		"_postman_id": "3432f1fa-0353-4dcc-abc3-76cffcb517c1",
 		"name": "x2microservices",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17284909"
+		"_exporter_id": "38842739",
+		"_collection_link": "https://codpartner-backend-team.postman.co/workspace/x1microservices~b658797d-a6e0-4cba-a3a2-4069a7f9a54f/collection/38842739-3432f1fa-0353-4dcc-abc3-76cffcb517c1?action=share&source=collection_link&creator=38842739"
 	},
 	"item": [
 		{
@@ -38,14 +39,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}:8000/sellers/auth",
+							"raw": "{{url}}:8000/me",
 							"host": [
 								"{{url}}"
 							],
 							"port": "8000",
 							"path": [
-								"sellers",
-								"auth"
+								"me"
 							]
 						}
 					},
@@ -66,15 +66,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{url}}:8000/users/auth",
 									"host": [

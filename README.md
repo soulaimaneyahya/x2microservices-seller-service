@@ -31,7 +31,7 @@ php artisan passport:keys --force
 
 DB Seed
 ```sh
-php artisan migrate
+php artisan migrate:fresh
 php artisan db:seed
 php artisan db:seed --class=TruncateOAuthTablesSeeder
 php artisan db:seed --class=InsertMigrationsSeeder

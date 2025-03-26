@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Categories\CategoriesService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class CategoriesController extends Controller
+class GetCategoriesListController extends Controller
 {
     use ApiResponser;
 
@@ -18,6 +18,6 @@ class CategoriesController extends Controller
 
     public function __invoke(): JsonResponse
     {
-        return $this->successResponse($this->categoriesService->getCategories());
+        return $this->jsonResponse($this->categoriesService->getCategories());
     }
 }

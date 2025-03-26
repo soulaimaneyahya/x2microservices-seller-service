@@ -25,7 +25,7 @@ return new class() extends Migration
     {
         Schema::create('oauth_clients', function (Blueprint $table) {
             $table->uuid('id')->primary()->index();
-            $table->foreignUuid('seller_id')
+            $table->foreignUuid('user_id')
                 ->nullable()
                 ->constrained()
                 ->on('sellers')
