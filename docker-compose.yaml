@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  mysql:
+  seller_service_mysql:
     build:
       context: ./database/mysql
       dockerfile: Dockerfile
@@ -15,9 +15,9 @@ services:
       - seller_service_mysql_data:/var/lib/mysql
     networks:
       app_network:
-        ipv4_address: 192.168.0.100  # MySQL IP
+        ipv4_address: 192.168.0.100  # seller_service_mysql IP
 
-  php:
+  seller_service_php:
     build:
       context: ./web/php
       dockerfile: Dockerfile
@@ -26,19 +26,19 @@ services:
     working_dir: /var/www/html/x2microservices-seller-service
     env_file:
       - ./web/php/.env
-    restart: always
+    restart: always # ensures that the container restarts automatically if it crashes or the system reboots.
     ports:
       - "9000:9000"
     volumes:
       - ./web/php:/var/www/html/x2microservices-seller-service
       - ./web/php/vendor:/var/www/html/x2microservices-seller-service/vendor
     depends_on:
-      - mysql
+      - seller_service_mysql
     networks:
       app_network:
-        ipv4_address: 192.168.0.101  # PHP IP
+        ipv4_address: 192.168.0.101  # seller_service_php IP
 
-  nginx:
+  seller_service_nginx:
     build:
       context: ./web/nginx
       dockerfile: Dockerfile
@@ -51,10 +51,10 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - php
+      - seller_service_php
     networks:
       app_network:
-        ipv4_address: 192.168.0.102  # Nginx IP
+        ipv4_address: 192.168.0.102  # seller_service_nginx IP
 
 volumes:
   seller_service_mysql_data:

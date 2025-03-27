@@ -37,4 +37,4 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interactio
 
 COPY . .
 
-EXPOSE ${SERVER_PORT}
+EXPOSE ${APP_PORT}
