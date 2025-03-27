@@ -1,0 +1,69 @@
+version: "3.8"
+
+services:
+  mysql:
+    build:
+      context: ./database/mysql
+      dockerfile: Dockerfile
+    image: seller_service_mysql:v1
+    container_name: seller_service_mysql_container
+    env_file:
+      - ./database/mysql/.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - seller_service_mysql_data:/var/lib/mysql
+    networks:
+      app_network:
+        ipv4_address: 192.168.0.100  # MySQL IP
+
+  php:
+    build:
+      context: ./web/php
+      dockerfile: Dockerfile
+    image: seller_service_php:v1
+    container_name: seller_service_php_container
+    working_dir: /var/www/html/x2microservices-seller-service
+    env_file:
+      - ./web/php/.env
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./web/php:/var/www/html/x2microservices-seller-service
+      - ./web/php/vendor:/var/www/html/x2microservices-seller-service/vendor
+    depends_on:
+      - mysql
+    networks:
+      app_network:
+        ipv4_address: 192.168.0.101  # PHP IP
+
+  nginx:
+    build:
+      context: ./web/nginx
+      dockerfile: Dockerfile
+    image: seller_service_nginx:v1
+    container_name: seller_service_nginx_container
+    working_dir: /var/www/html/x2microservices-seller-service
+    env_file:
+      - ./web/nginx/.env
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - php
+    networks:
+      app_network:
+        ipv4_address: 192.168.0.102  # Nginx IP
+
+volumes:
+  seller_service_mysql_data:
+
+networks:
+  app_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "192.168.0.0/24"
+          gateway: "192.168.0.1"
+    external: false

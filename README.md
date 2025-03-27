@@ -1,5 +1,6 @@
 # Seller service / API Gateway
 
+- [Infra](https://github.com/soulaimaneyahya/x2microservices-infra)
 - [Seller service / API Gateway](https://github.com/soulaimaneyahya/x2microservices-seller-service)
 - [Categories service](https://github.com/soulaimaneyahya/x2microservices-categories-service)
 - [Products service](https://github.com/soulaimaneyahya/x2microservices-products-service)
@@ -29,6 +30,11 @@ Generate PHP-Lumen Encryption keys
 php artisan passport:keys --force
 ```
 
+clear cache;
+```sh
+php artisan cache:clear
+```
+
 DB Seed
 ```sh
 php artisan migrate:fresh
@@ -46,4 +52,3 @@ ensure getting `CLIENT_SECRET`, check postman
 CLIENT_SECRET=your_client_secret
 API_GATEWAY_SECRETS=your_client_secret
 ```
-
