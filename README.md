@@ -30,6 +30,7 @@ php -r "echo 'base64:' . base64_encode(random_bytes(32)) . PHP_EOL;"
 
 Set Permissions
 ```sh
+sudo chown -R $USER:www-data storage
 sudo chmod -R 775 storage
 ```
 
