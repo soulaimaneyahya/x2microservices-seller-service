@@ -14,7 +14,7 @@ services:
     volumes:
       - seller_service_mysql_data:/var/lib/mysql
     networks:
-      app_network:
+      shared_network:
         ipv4_address: 192.168.0.100  # seller_service_mysql IP
 
   seller_service_php:
@@ -35,7 +35,7 @@ services:
     depends_on:
       - seller_service_mysql
     networks:
-      app_network:
+      shared_network:
         ipv4_address: 192.168.0.101  # seller_service_php IP
 
   seller_service_nginx:
@@ -44,26 +44,28 @@ services:
       dockerfile: Dockerfile
     image: seller_service_nginx:v1
     container_name: seller_service_nginx_container
-    working_dir: /var/www/html/x2microservices-seller-service
+    working_dir: /etc/nginx
     env_file:
       - ./web/nginx/.env
     restart: always
     ports:
       - "8000:8000"
+    volumes:
+      - ./web/nginx:/etc/nginx
     depends_on:
       - seller_service_php
     networks:
-      app_network:
+      shared_network:
         ipv4_address: 192.168.0.102  # seller_service_nginx IP
 
 volumes:
   seller_service_mysql_data:
 
 networks:
-  app_network:
+  shared_network:
     driver: bridge
     ipam:
       config:
         - subnet: "192.168.0.0/24"
           gateway: "192.168.0.1"
-    external: false
+    external: true

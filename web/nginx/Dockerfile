@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /etc/nginx
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
