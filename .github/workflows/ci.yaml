@@ -1,4 +1,4 @@
-name: PHP Composer
+name: CI
 
 on:
   push:
@@ -10,9 +10,9 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  ci:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Set up PHP
